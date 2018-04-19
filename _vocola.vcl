@@ -6,6 +6,7 @@ edit commands for <_anything> = ShellExecute('emacsclientw c:/Users/jarpy/Dropbo
 
 # Universal keystrokes.
 (spank|enter) = {enter};
+tabular = {tab};
 
 # Window management.
 frame 1..9 = win($1);
