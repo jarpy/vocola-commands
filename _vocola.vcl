@@ -3,13 +3,15 @@ include functions.vcl;
 
 # Meta-commands
 edit commands for <_anything> = ShellExecute('emacsclientw c:/Users/jarpy/Dropbox/Vocola/$1.vcl');
+snore = GoToSleep();
 
 # Universal keystrokes.
 (spank|enter) = {enter};
 tabular = {tab};
 
 # Window management.
-frame 1..9 = win($1);
+frame 1..0 = win($1);
+frame 10 = win(0);
 
 # Many of these are executed by AquaSnap.
 frame (
@@ -45,7 +47,9 @@ switch (
   editor=8 |
   local emacs=8 |
   win emacs=8 |
-  windows emacs=8
+  windows emacs=8 |
+  kitty=9 |
+  putty=9
 ) = win($1);
 
 # Direct switching to useful apps.
@@ -55,17 +59,30 @@ switch hangouts = AppBringUp(Firefox) ctrl(2);
 [switch] terminal [tab] 1..9 = AppBringUp(mintty) ctrl(b) $1;
 [switch] terminal [tab] <_anything> = AppBringUp(mintty) ctrl(b) ":select-window -t '$1'{enter}";
 [switch] (firefox|fox) [tab] 1..9 = AppBringUp(Firefox) ctrl($2);
+search [my] (work=2|personal=4) (mail|email) for <_anything> = win($1) ctrl(1);
 
 # Text to Speech. Implemented by TextAloud.
 (amy=a|brian=b|emma=e) read (that|this|[the] selection) [please] = ctrlAltShift($1);
 (amy=a|brian=b|emma=e) read (all|all of that|the whole thing|back) [please] = ctrl(a) ctrlAltShift($1);
 
 # String formatting.
-backticks <_anything> = `$1`;
 bang <_anything> = !$1;
 bang bang = !!;
-brackets <_anything> = "[$1]";
-braces <_anything> = "{$1}";
-parens <_anything> = "($1)";
+
+backticks <_anything> = " `$1`";
+brackets <_anything> = " [$1]";
+braces <_anything> = " {$1}";
+parens <_anything> = " ($1)";
+soft string <_anything> = " $1";
+
+backticks here <_anything> = "`$1`";
+brackets here <_anything> = "[$1]";
+braces here <_anything> = "{$1}";
+parens here <_anything> = "($1)";
+soft string here <_anything> = "$1";
+
 timestamp now = Jarpy.UTCNow();
 
+
+say yes = y {enter};
+say no = n {enter};
