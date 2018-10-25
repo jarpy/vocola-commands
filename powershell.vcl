@@ -1,3 +1,7 @@
+include git.vcl;
+include emacs_keys.vcl;
+include vim.vcl;
+
 abort = {ctrl+c};
 
 list_dir() := "Get-ChildItem | Select -first 20{enter}";

@@ -6,10 +6,12 @@ show status = "git status{enter}";
 show (git log|commits) = "git log --oneline | head -n 10{enter}";
 cherry-pick = "git cherry-pick ";
 reset hard = "Xgit reset --hard{ctrl+a}{ctrl+f}";
+rebase on origin master = "git fetch origin; git rebase origin/master" {enter};
 #TODO: make branch <_anything> = "git branch $1 && git checkout $1";
 
-[git] fetch (remotes|all) = "git fetch --all{enter}";
-[Git] commit patch = "git commit -p{enter}";
+(git|gitsy) fetch (remotes|all) = "git fetch --all{enter}";
+(git|gitsy) commit patch = "git commit -p{enter}";
+(git|gitsy) stash = "git stash{enter}";
 
 checkout branch 1..99 = "git checkout `git branch -vv | cat -n | egrep '^ *$1[^0-9]' | awk '{print \$2}'`{enter}";
 checkout remote branch 1..999 = "git checkout `git branch -rvv | cat -n | egrep '^ *$1[^0-9]' | awk '{print \$2}' | cut -d '/' -f '2-'`{enter}";
